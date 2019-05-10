@@ -65,26 +65,26 @@
                         <div class="field">
                             <label>Nickname OR Email</label>
                             <input id="email" value="{{old('email')}}" type="text" name="email" placeholder="Bossbele OR adambeleko@gmail.com">
-                            @if($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{$error->first('email')}}</strong>
-                                </span>
-                            @endif
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="field" >
                             <label>Password</label>
-                            <input id="password" type="text" name="password" placeholder="Password">
-                            {{--@if($errors->has('password'))--}}
-                                {{--<span class="help-block">--}}
-                                    {{--<strong>{{$error->first('password')}}</strong>--}}
-                                {{--</span>--}}
-                            {{--@endif--}}
+                            <input id="password" type="password" name="password" placeholder="Password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="ui error message">
                             <div class="header">Action Forbidden</div>
                             <p>You can only sign up for an account once with a given e-mail address.</p>
                         </div>
-                        <button class="ui button" type="submit">Sign in</button>
+                        <button class="ui button" type="submit">Sign In</button>
                     </form>
                 </div>
             </div>
@@ -100,37 +100,37 @@
                         <div class="field">
                             <label>First Name</label>
                             <input id="first_name" value="{{old('first_name')}}" type="text" name="first_name" placeholder="First Name">
-                            @if($errors->has('first_name'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('first_name')}}</strong>
-                                </span>
-                            @endif
+                            @error('first_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="field">
                             <label>Last Name</label>
                             <input id="last_name" value="{{old('last_name')}}" type="text" name="last_name" placeholder="Last Name">
-                            @if($errors->has('last_name'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('last_name')}}</strong>
-                                </span>
-                            @endif
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="field">
                             <label>Email</label>
                             <input id="email" value="{{old('email')}}" type="email" name="email" placeholder="Email">
-                            @if($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('email')}}</strong>
-                                </span>
-                            @endif
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="field">
                             <label>Password</label>
                             <input id="password" value="{{old('password')}}" type="password" name="password" placeholder="Password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="field">
@@ -138,7 +138,7 @@
                             <input id="password-confirm" value="{{old('password')}}" type="password" name="password_confirmation"
                                    placeholder="Password">
                         </div>
-                        <button class="ui button" type="submit">{{ __('Register') }}</button>
+                        <button class="ui button" type="submit">Sign Up</button>
                     </form>
                 </div>
             </div>
