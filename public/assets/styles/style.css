@@ -1,0 +1,19 @@
+.ui.card .image img {
+    margin: auto;
+}
+
+.ui.medium.rounded.image {
+	height: 290px;
+}
+
+#picture-frame {
+	height: 280px;
+	border-top: 20px solid #e0e0e0;
+	border-bottom: 20px solid #e0e0e0;
+	box-sizing: content-box; 
+	background-color: #e0e0e0 !important;
+	background-size: contain !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-image: url('../images/image.png');
+}
