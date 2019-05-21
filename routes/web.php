@@ -18,22 +18,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/edit', function (){
-   return view('edit');
-});
+Route::get('/edit/{id}','EditController@index');
 
-Route::get('/personal_data',function (){
-   return view('personal');
-});
+Route::post('/edit/{id}/save','EditController@save');
 
-Route::get('/profile', function (){
-   return view('profile');
-});
+Route::get('/personal_data','PersonalDataController@index');
 
-Route::get('/signup',function (){
-   return view('signup');
-});
+Route::get('/profile','ProfileController@index');
+
+Route::get('/signup','SignupController@index');
+
+Route::post('/signup/complete','SignupController@edit');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

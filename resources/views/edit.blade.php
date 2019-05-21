@@ -74,6 +74,9 @@
 </head>
 
 <body>
+
+@foreach($editData as $data)
+
 <header>
     <div class="ui top fixed menu">
         <a href="../../" class="item">
@@ -84,12 +87,21 @@
         <a href="{{url('/personal_data')}}" class="item">View data</a>
         <div class="right menu">
             <div class="ui simple dropdown item">
-                Adam Beleko
+                {{ $data->first_name }} {{ $data->last_name }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item">My family</div>
-                    <a class="item" href="">Edit profile</a>
-                    <div class="item">Sign out</div>
+                    <a class="item" href="{{url('/edit/'.$data->id)}}">Edit profile</a>
+                    <div class="item">
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="item"></div>
@@ -100,41 +112,42 @@
 <!--  -->
 <div class="ui container basic segment">
     <div class="ui segment">
-        <form class="ui form">
+        <form enctype="multipart/form-data" action="{{ url('/edit/'.$data->id.'/save') }}" method="post" class="ui form">
+            @csrf
             <div class="ui basic segment">
                 <div class="ui top attached label">Basic Information</div>
                 <div class="field">
                     <label>Picture</label>
                     <div id="picture-frame" class="ui medium rounded image"></div>
-                    <input type="file" name="profile-picture">
+                    <input name="profile_picture" type="file" >
                 </div>
                 <div class="field">
                     <label>First Name</label>
-                    <input type="text" name="first-name" placeholder="First Name">
+                    <input type="text" name="first-name" value="{{ $data->first_name }}">
                 </div>
                 <div class="field">
                     <label>Middle Name</label>
-                    <input type="text" name="first-name" placeholder="Middle Name">
+                    <input type="text" name="middle-name" value="{{ $data->middle_name }}">
                 </div>
                 <div class="field">
                     <label>Last Name</label>
-                    <input type="text" name="last-name" placeholder="Last Name">
+                    <input type="text" name="last-name" value="{{ $data->last_name }}">
                 </div>
                 <div class="field">
                     <label>Nickname</label>
-                    <input type="text" name="nick-name" placeholder="Nickname">
+                    <input type="text" name="nick-name" value="{{ $data->nickname }}">
                 </div>
                 <div class="field">
                     <label>Occupation</label>
-                    <input type="text" name="occupation" placeholder="Occupation">
+                    <input type="text" name="occupation" value="Occupation">
                 </div>
                 <div class="field">
                     <label>Date of Birth</label>
-                    <input id="dob" type="text" name="dob" placeholder="Date of Birth" data-language="en">
+                    <input id="dob" type="text" name="dob" value="{{ $data->birth_data }}" data-language="en">
                 </div>
                 <div class="field">
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="email" name="email" value="{{ $data->email }}">
                 </div>
                 <div class="field">
                     <label>Phone</label>
@@ -142,7 +155,7 @@
                         <div class="ui label">
                             <div class="item" data-value="+255"><i class="tz flag"></i>+255</div>
                         </div>
-                        <input type="tel" name="phone" placeholder="0757 590 414">
+                        <input type="tel" name="phone" value="{{ $data->phone_number }}">
                     </div>
                 </div>
             </div>
@@ -150,23 +163,23 @@
                 <div class="ui top attached label">Socials</div>
                 <div class="field">
                     <label>Facebook</label>
-                    <input type="text" name="facebook" placeholder="Facebook Name">
+                    <input type="text" name="facebook" value="{{ $data->facebook }}">
                 </div>
                 <div class="field">
                     <label>Instagram</label>
-                    <input type="text" name="instagram" placeholder="Instagram Username">
+                    <input type="text" name="instagram" value="{{ $data->instagram }}">
                 </div>
                 <div class="field">
                     <label>Twitter</label>
-                    <input type="text" name="twitter" placeholder="Twitter Username">
+                    <input type="text" name="twitter" value="{{ $data->twitter }}">
                 </div>
                 <div class="field">
                     <label>LinkedIn</label>
-                    <input type="text" name="linkedin" placeholder="LinkedIn Name">
+                    <input type="text" name="linkedin" value="{{ $data->linkedin }}">
                 </div>
                 <div class="field">
                     <label>Pinterest</label>
-                    <input type="text" name="pinterest" placeholder="Pinterest Name">
+                    <input type="text" name="pinterest" value="{{ $data->pinterest }}">
                 </div>
                 <button class="ui button" type="submit">Save</button>
             </div>
@@ -174,6 +187,9 @@
     </div>
 </div>
 </div>
+
+@endforeach
+
 </body>
 
 </html>

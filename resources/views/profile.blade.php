@@ -41,6 +41,9 @@
 </head>
 
 <body>
+
+@foreach($profile as $profiles)
+
 <header>
     <div class="ui top fixed menu">
         <a href="../" class="item">
@@ -51,11 +54,11 @@
         <a href="{{url('/personal_data')}}" class="item">View data</a>
         <div class="right menu">
             <div class="ui simple dropdown item">
-                Adam Beleko
+                {{ $profiles->first_name }} {{ $profiles->last_name }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item">My family</div>
-                    <a href="{{url('/edit')}}" class="item">Edit profile</a>
+                    <a href="{{url('/edit/'.$profiles->id)}}" class="item">Edit profile</a>
                     <div class="item">
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -79,10 +82,10 @@
         <div class="ui basic segment">
             <div class="ui card fluid">
                 <div class="ui">
-                    <img class="ui medium centered rounded image" src="{{url('assets/images/avatar.png')}}">
+                    <img class="ui medium centered rounded image" src="{{url('uploads/'.$profiles->image)}}">
                 </div>
                 <div class="content">
-                    <a class="header">Adam Beleko</a>
+                    <a class="header">{{ $profiles->first_name }} {{ $profiles->last_name }}</a>
                     <div class="meta">
                         <span class="date">Student</span>
                     </div>
@@ -99,6 +102,9 @@
         </div>
     </div>
 </div>
+
+@endforeach
+
 </body>
 
 </html>

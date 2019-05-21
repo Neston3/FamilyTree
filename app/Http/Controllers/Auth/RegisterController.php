@@ -28,7 +28,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    public $currentUserId;
     protected $redirectTo = '/signup';
+
+//    protected function redirectTo()
+//    {
+//        //assuming your route name is 'userprofileadd' if not, use your route name of the route('/userprofileadd')
+//        return route('signup/', ['id' => $this->currentUserId]);
+//    }
 
     /**
      * Create a new controller instance.
@@ -70,5 +77,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }

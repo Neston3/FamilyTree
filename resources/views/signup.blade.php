@@ -68,29 +68,32 @@
     <div class="ui message">
         Your family needs more than a name to identify you...
     </div>
+
+
+    @foreach($user as $data)
+
     <div class="ui segment">
         <div class="ui basic segment">
             <div class="ui top attached label">Sign up</div>
-            <form class="ui form">
+            <form method="post" action="{{ url('/signup/complete') }}" class="ui form">
+
+                @csrf
+
                 <div class="field">
                     <label>First Name</label>
-                    <input type="text" name="first-name" placeholder="First Name" readonly="">
-                </div>
-                <div class="field">
-                    <label>Last Name</label>
-                    <input type="text" name="last-name" placeholder="Last Name" readonly="">
-                </div>
-                <div class="field">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Email" readonly="">
-                </div>
-                <div class="field">
-                    <label>Choose password</label>
-                    <input type="text" name="password" placeholder="Password" readonly="">
+                    <input type="text" name="first-name" placeholder="{{ $data->first_name }}" readonly="">
                 </div>
                 <div class="field">
                     <label>Middle Name</label>
                     <input type="text" name="middle-name" placeholder="Middle Name">
+                </div>
+                <div class="field">
+                    <label>Last Name</label>
+                    <input type="text" name="last-name" placeholder="{{ $data->last_name }}" readonly="">
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="{{ $data->email }}" readonly="">
                 </div>
                 <div class="field">
                     <label>Nickname</label>
@@ -113,6 +116,8 @@
             </form>
         </div>
     </div>
+
+    @endforeach
 </div>
 </body>
 

@@ -41,6 +41,9 @@
 </head>
 
 <body>
+
+@foreach($personal as $personals)
+
 <header>
     <div class="ui top fixed menu">
         <a href="../../" class="item">
@@ -51,12 +54,21 @@
         <a href="{{url('/personal_data')}}" class="item active">View data</a>
         <div class="right menu">
             <div class="ui simple dropdown item">
-                Adam Beleko
+                {{ $personals->first_name }} {{ $personals->last_name }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="item">My family</div>
-                    <a class="item" href="{{url('/edit')}}">Edit profile</a>
-                    <div class="item">Sign out</div>
+                    <a class="item" href="{{url('/edit/'.$personals->id)}}">Edit profile</a>
+                    <div class="item">
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="item"></div>
@@ -77,23 +89,23 @@
                 </tr>
                 <tr>
                     <th>Name</th>
-                    <td>Adam Athumani Beleko</td>
+                    <td>{{ $personals->first_name }} {{ $personals->middle_name }} {{ $personals->last_name }}</td>
                 </tr>
                 <tr>
                     <th>Nickname</th>
-                    <td>BossBele</td>
+                    <td>{{ $personals->nickname }}</td>
                 </tr>
                 <tr>
                     <th>Date of Birth</th>
-                    <td>05/10/1996</td>
+                    <td>{{ $personals->birth_data }}</td>
                 </tr>
                 <tr>
                     <th>Phone</th>
-                    <td>+255 757 590 414</td>
+                    <td>{{ $personals->phone_number }}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>adambeleko@gmail.com</td>
+                    <td>{{ $personals->email }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -104,29 +116,32 @@
                 <tbody>
                 <tr>
                     <th>Facebook</th>
-                    <td>Adam Beleko</td>
+                    <td>{{ $personals->facebook }}</td>
                 </tr>
                 <tr>
                     <th>Instagram</th>
-                    <td>@bossbele_</td>
+                    <td>{{ $personals->instagram }}</td>
                 </tr>
                 <tr>
                     <th>Twitter</th>
-                    <td>@adambeleko</td>
+                    <td>{{ $personals->twitter }}</td>
                 </tr>
                 <tr>
                     <th>LinkedIn</th>
-                    <td>Adam Beleko</td>
+                    <td>{{ $personals->linkedin }}</td>
                 </tr>
                 <tr>
                     <th>Pinterest</th>
-                    <td>Adam Beleko</td>
+                    <td>{{ $personals->pinterest }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+@endforeach
+
 </body>
 
 </html>
