@@ -139,7 +139,7 @@
                 </div>
                 <div class="field">
                     <label>Occupation</label>
-                    <input type="text" name="occupation" value="Occupation">
+                    <input type="text" name="occupation" value="{{ $data->occupation }}">
                 </div>
                 <div class="field">
                     <label>Date of Birth</label>

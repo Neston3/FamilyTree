@@ -85,7 +85,7 @@
                 <tbody>
                 <tr>
                     <th>Photo</th>
-                    <td><img src="{{url('assets/images/image.png')}}" width="100px"></td>
+                    <td><img src="{{url('uploads/'.$personals->image)}}" width="100px"></td>
                 </tr>
                 <tr>
                     <th>Name</th>

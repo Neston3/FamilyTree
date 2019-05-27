@@ -10,6 +10,8 @@ class EditController extends Controller
 {
 
 
+    private $name;
+
     /**
      * EditController constructor.
      */
@@ -23,7 +25,7 @@ class EditController extends Controller
         return view('edit')->with('editData',$edit_data);
     }
 
-    public function imageSave(Request $request){
+    public function imageSave(Request $request,$id){
         if ($request->hasFile('profile_picture')) {
             $destinationPath = 'uploads';
             $files = $request->profile_picture;
@@ -31,13 +33,17 @@ class EditController extends Controller
             $files->move($destinationPath, $file_name);
             return $file_name;
 
+        }else{
+            $edit_data=DB::table('users')->where('id',$id)->get();
+            $this->name=$edit_data[0]->image;
+            return $this->name;
         }
-        return '';
     }
 
     public function save(Request $request, $id){
 
-        $name=$this->imageSave($request);
+
+        $name=$this->imageSave($request,$id);
 
         $firstname=$request->input('first-name');
         $middlename = $request->input('middle-name');
